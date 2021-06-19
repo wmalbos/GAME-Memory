@@ -1,0 +1,10 @@
+{
+    "name": "wmalbos/game-memory",
+    "authors": [
+        {
+            "name": "William Malbos",
+            "email": "wmalbos@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,216 @@
+@import "variables";
+@import "board";
+@import "card";
+
+.memory-game {
+
+  .menu {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    background: rgba(0, 0, 0, .6);
+
+    &.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-container {
+      width: 700px;
+      height: auto;
+
+      border-radius: 15px;
+
+      background: rgba(255, 255, 255, 1);
+    }
+
+    &-general {
+      .menu-header {
+        width: 100%;
+
+        padding: 0;
+        margin: 0 0 50px 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .menu-title {
+          width: 100%;
+
+          text-align: center;
+        }
+
+        .menu-figure {
+          width: 400px;
+          height: 300px;
+
+          background: $color-black;
+        }
+      }
+
+      .menu-content {
+        width: 100%;
+        max-width: 500px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        margin: 0 auto;
+
+        .btn {
+          width: 100%;
+
+          display: block;
+
+          margin: 0 0 10px 0;
+          padding: 0;
+
+          border: 2px solid $color-black;
+
+          color: $color-white;
+          background: $color-black;
+
+          font-size: 20px;
+          line-height: 40px;
+          text-transform: uppercase;
+          text-decoration: none;
+          text-align: center;
+
+          transition: linear .3s;
+
+          &:hover {
+            color: $color-black;
+            background: $color-white;
+
+            cursor: pointer;
+          }
+
+          &-play {
+            background: $color-green;
+            border-color: $color-green;
+
+            &:hover {
+              color: $color-green;
+            }
+          }
+
+          &-ranking {
+            background: $color-pink;
+            border-color: $color-pink;
+
+            &:hover {
+              color: $color-pink;
+            }
+          }
+
+          &-documentation {
+            background: $color-orange;
+            border-color: $color-orange;
+
+            &:hover {
+              color: $color-orange;
+            }
+          }
+        }
+      }
+    }
+
+    &-ranking {
+      .menu-header {
+        width: 100%;
+
+        padding: 0;
+        margin: 0 0 50px 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .menu-title {
+          width: 100%;
+
+          text-align: center;
+        }
+
+        .menu-figure {
+          width: 400px;
+          height: 300px;
+
+          background: $color-black;
+        }
+      }
+
+      .menu-content {
+        .item-list {
+          .item {
+
+          }
+        }
+      }
+
+      .menu-controls {
+        width: 100%;
+        max-width: 500px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        margin: 0 auto;
+
+        .btn {
+          width: 100%;
+
+          display: block;
+
+          margin: 0 0 10px 0;
+          padding: 0;
+
+          border: 2px solid $color-black;
+
+          color: $color-white;
+          background: $color-black;
+
+          font-size: 20px;
+          line-height: 40px;
+          text-transform: uppercase;
+          text-decoration: none;
+          text-align: center;
+
+          transition: linear .3s;
+
+          &:hover {
+            color: $color-black;
+            background: $color-white;
+
+            cursor: pointer;
+          }
+
+          &-return {
+            background: $color-black;
+            border-color: $color-black;
+
+            &:hover {
+              color: $color-black;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+}

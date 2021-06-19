@@ -21,6 +21,18 @@ Il est possible de modifier l'expérience de jeu en modifiant quelques règles :
 - Compter les nombres de coups, les nombre de parties, etc...
 - Ajout d'une musique d'ambiances et de sons ( découvrte d'une paire, victoire, echec, ... )
 
+### III) Description du projet
+
+#### a) Makefile
+
+Le projet comporte un fichier **Makefile** qui permet de réaliser certaines actions rapidement en utilisant un IDE (Environnement De Développement), comme par exemple PhpStorm. 
+
+Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes suivantes : 
+
+- **make composer_install** -- ( Cette commande permet d'installer les dépendances de composer )
+- **make composer_update** -- ( Cette commande permet de mettre à jours les dépendances)
+- **make sass_dev** -- ( Cette commande permet de compiler de manière automatique les assets du projet )
+- **make sass_production** -- ( Cette commande permet de compiler les assets du projet pour la production et de les minifier pour améliorer les performances )
 
 
 [#JavaScript](https://fr.wikipedia.org/wiki/JavaScript) [#PHP](https://fr.wikipedia.org/wiki/PHP)
