@@ -30,11 +30,11 @@ $ranking = [
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Rock+Salt&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Javascripts -->
-    <script src="/assets/js/scripts.js"></script>
-    <script src="/assets/js/game.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/game.js"></script>
 </head>
 <body>
 
