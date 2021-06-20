@@ -140,7 +140,7 @@
   transform: rotateY(180deg);
 }
 .memory-game .card .back-face {
-  background: url("../../assets/images/carte_verso.png") center center no-repeat;
+  background: url("/assets/images/carte_verso.png") center center no-repeat;
   background-size: 100% 100%;
 }
 .memory-game .card.active .front-face {
