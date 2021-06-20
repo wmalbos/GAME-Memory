@@ -2,46 +2,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // MENU
     let menu_general = document.getElementById('menu');
-    let btn_play = document.getElementById('btn_play');
-    let btn_ranking = document.getElementById('btn_ranking');
-
     let menu_ranking = document.getElementById('menu_ranking');
-    let btn_ranking_return = document.getElementById('btn_ranking_return');
-
     let menu_victory = document.getElementById('menu_victory');
-    let btn_replay = document.getElementById('btn_replay');
+    let menu_loose = document.getElementById('menu_loose');
 
-    // Jeu
+    let btn_replay = document.getElementsByClassName('btn-replay');
+    let btn_ranking = document.getElementsByClassName('btn-ranking');
+    let btn_ranking_return = document.getElementById('btn_ranking_return');
+    let btn_board_menu = document.getElementById('board_menu');
+
+    // Jeu Memory
     let game = new Game();
 
     /**
-     * Ecoute l'évènement de clique sur le bouton du menu "Jouer",
+     * Ecoute l'évènement de clique sur les boutons du menu "Jouer / Rejouer",
      * Démarre une nouvelle partie
      */
-    btn_play.addEventListener('click', (event) => {
-        event.preventDefault();
+    for (let i = 0; i < btn_replay.length; i++) {
+        btn_replay[i].addEventListener('click', (event) => {
+            event.preventDefault();
 
-        // Changement de fenêtre
-        menu_general.classList.remove('active');
+            // Changement de fenêtre
+            menu_general.classList.remove('active');
+            menu_victory.classList.remove('active');
+            menu_loose.classList.remove('active');
 
-        // Lancement du jeu
-        game.newGame();
-    });
+            // Lancement du jeu
+            game.newGame();
+        });
+    }
 
     /**
-     * Ecoute l'évènement de clique sur le bouton du menu "Classement",
+     * Ecoute l'évènement de clique sur les boutons du menu "Classement",
      * Ouvre la fenêtre de classement des joueurs
      */
-    btn_ranking.addEventListener('click', (event) => {
-        event.preventDefault();
+    for (let i = 0; i < btn_ranking.length; i++) {
+        btn_ranking[i].addEventListener('click', (event) => {
+            event.preventDefault();
 
-        // Changement de fenêtre
-        menu_general.classList.remove('active');
-        menu_ranking.classList.add('active');
-    });
+            // Changement de fenêtre
+            menu_general.classList.remove('active');
+            menu_victory.classList.remove('active');
+            menu_loose.classList.remove('active');
+            menu_ranking.classList.add('active');
+        });
+    }
 
     /**
-     * Ecoute l'évènement de clique sur le bouton de retour du menu "Classement",
+     * Ecoute l'évènement de clique sur les boutons de retour du menu "Classement",
      * Ferme la fenêtre et affiche celle du menu de base
      */
     btn_ranking_return.addEventListener('click', (event) => {
@@ -52,21 +60,19 @@ document.addEventListener('DOMContentLoaded', function () {
         menu_general.classList.add('active');
     });
 
-    /**
-     * Ecoute l'évènement de clique sur le bouton du menu "Rejouer",
-     * Démarre une nouvelle partie
-     */
-    btn_replay.addEventListener('click', (event) => {
+    btn_board_menu.addEventListener('click', (event) => {
         event.preventDefault();
 
         // Changement de fenêtre
+        menu_ranking.classList.remove('active');
         menu_victory.classList.remove('active');
+        menu_loose.classList.remove('active');
+        menu_general.classList.add('active');
 
-        // Lancement du jeu
-        game.restart();
+        this.game.stop();
     });
 
-    btn_play.click();
+    btn_replay[0].click();
 
 }, false);
 
@@ -76,15 +82,26 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 class Game {
 
-    pair_numbers = 1; // Nombre de paires de cartes dans la partie
-    timer = null; // Décomtpe restant avant la fin de la partie
+    pair_numbers = 9; // Nombre de paires de cartes dans la partie
+    game_duration = 120; // Décompte restant avant la fin de la partie en secondes
+    countdown = null; // Compte à rebours
     game_counter = 0; // Nombre de parties jouées
 
     constructor() {
-        this.board = new Board(this)
+        this.board = new Board(this);
 
         this.dom_menu_victory = document.getElementById('menu_victory');
+        this.dom_menu_loose = document.getElementById('menu_loose');
         this.dom_game_counter = document.getElementById('game_counter');
+
+        // Fichiers audio
+        this.audio_error = new Audio('assets/audio/error.mp3');
+        this.audio_success = new Audio('assets/audio/success.mp3');
+        this.audio_victory = new Audio('assets/audio/victory.mp3');
+        this.audio_failed = new Audio('assets/audio/failed.mp3');
+
+        // Création du compteur de temps
+        this.countdown = new Countdown(this);
     }
 
     // Création d'une nouvelle partie
@@ -95,37 +112,29 @@ class Game {
 
         // On réinitialise le plateau
         this.board.newBoard(this.pair_numbers);
+
+        // Gestion du décompte
+        this.countdown.start(this.game_duration);
     }
-
-    // Relance une nouvelle partie
-    restart() {
-        // Nombre de partie jouées
-        this.game_counter++;
-        this.dom_game_counter.innerText = this.game_counter;
-
-        // On réinitialise le plateau
-        this.board.newBoard(this.pair_numbers);
-    }
-
-    // Met en pause la partie en cours
-    pause() {
-
-    }
-
-    // Quitte la partie en cours
-    stop() {
-
-    }
-
 
     // Victoire du joueur
     winGame() {
+        this.countdown.stop();
         this.dom_menu_victory.classList.add('active');
+
+        // On joue un son de victoire
+        this.audio_victory.volume = 1;
+        this.audio_victory.play();
     }
 
     // Défaite du joueur
     loseGame() {
+        this.countdown.stop();
+        this.dom_menu_loose.classList.add('active');
 
+        // On joue un son de défaite
+        this.audio_failed.volume = 1;
+        this.audio_failed.play();
     }
 }
 
@@ -147,18 +156,9 @@ class Board {
 
         // Création de toutes les cartes utilisables du jeu
         this.init_cards = [];
-        this.init_cards.push(new Card(1, 'assets/images/card_1.png'));
-        this.init_cards.push(new Card(2, 'assets/images/card_2.png'));
-        this.init_cards.push(new Card(3, 'assets/images/card_3.png'));
-        this.init_cards.push(new Card(4, 'assets/images/card_4.png'));
-        this.init_cards.push(new Card(5, 'assets/images/card_5.png'));
-        // this.init_cards.push(new Card(6, 'assets/images/card_6.png'));
-        // this.init_cards.push(new Card(7, 'assets/images/card_7.png'));
-        // this.init_cards.push(new Card(8, 'assets/images/card_8.png'));
-        // this.init_cards.push(new Card(9, 'assets/images/card_9.png'));
-        // this.init_cards.push(new Card(10, 'assets/images/card_10.png'));
-        // this.init_cards.push(new Card(11, 'assets/images/card_11.png'));
-        // this.init_cards.push(new Card(12, 'assets/images/card_12.png'));
+        for(let i = 1; i <= 12; i++){
+            this.init_cards.push(new Card(i, `assets/images/card_${i}.png`));
+        }
 
         // Liste des cartes du plateau
         this.cards = [];
@@ -253,6 +253,10 @@ class Board {
                             let dom_second_card = document.getElementById(`card_${board.current_hand[1]}`)
                             dom_second_card.classList.remove('active')
 
+                            // On joue un son d'echec
+                            board.game.audio_error.volume = 0.4;
+                            board.game.audio_error.play();
+
                             board.current_hand = [];
                         }, 750)
                     } else {
@@ -263,8 +267,12 @@ class Board {
                         board.return_cards.push(first_card);
                         board.return_cards.push(second_card);
 
+                        // On joue un son de success
+                        board.game.audio_success.volume = 1;
+                        board.game.audio_success.play();
+
                         // On vérifie si le joueur à gagné
-                        if( board.checkEndGame()){
+                        if (board.checkEndGame()) {
                             setTimeout(function () {
                                 board.game.winGame();
                             }, 750)
@@ -277,7 +285,7 @@ class Board {
     }
 
     // Réinitialise le plateau de jeu
-    clearBoard(){
+    clearBoard() {
 
         // On réinitialise les listes
         this.cards = [];
@@ -343,5 +351,84 @@ class Card {
     // Créer une réplique de la carte
     clone() {
         return new Card(this.value, this.image);
+    }
+}
+
+/**
+ * La classe CountDown permet de gérer un compte à rebour
+ */
+class Countdown {
+
+    time_total = null; // Temps initial du décompte en secondes
+    time_duration = null; // Temps restant du décompte en secondes
+    time_transition = 1000; // Interval du timer en millisecondes
+    is_running = false; // Le timer est en cours de décompte ?
+    is_finished = false; // Le timer est terminé ?
+    timer_timeout = null; // Objet setTimeout, il faut penser à le supprimer une fois utilisé
+
+    constructor(game) {
+        this.game = game;
+
+        this.dom_minutes = document.getElementById('timer_min');
+        this.dom_secondes = document.getElementById('timer_sec');
+        this.dom_progress = document.getElementById('progress');
+    }
+
+    // Démarrage du timer
+    start(secondes) {
+        this.stop();
+
+        this.time_total = secondes;
+        this.time_duration = this.time_total;
+
+        this.is_running = true;
+        this.update_gui();
+        this.update();
+    }
+
+    // Mise à jours du timer
+    update() {
+        if (this.is_running) {
+            if (this.time_duration > 0) {
+                let timer = this;
+                this.timer_timeout = setTimeout(function () {
+                    timer.time_duration -= (timer.time_transition / 1000);
+                    timer.update_gui();
+                    timer.update();
+                }, this.time_transition);
+            } else {
+                this.is_finished = true;
+                clearTimeout(this.timer_timeout);
+                this.game.loseGame();
+            }
+        }
+    }
+
+    // Arrête le décompte
+    stop() {
+        this.is_running = false;
+        clearTimeout(this.timer_timeout);
+    }
+
+    // Mise à jour de l'interface utilisateur
+    update_gui() {
+        this.dom_minutes.innerText = Math.trunc(this.time_duration / 60);
+        this.dom_secondes.innerText = this.time_duration % 60;
+
+        let percent = this.time_duration * 100 / this.time_total;
+
+        this.dom_progress.classList.remove('default')
+        this.dom_progress.classList.remove('warning')
+        this.dom_progress.classList.remove('danger')
+
+        if (percent < 10) {
+            this.dom_progress.classList.add('danger')
+        } else if (percent < 25) {
+            this.dom_progress.classList.add('warning')
+        } else {
+            this.dom_progress.classList.add('default')
+        }
+
+        this.dom_progress.style.width = `${100 - percent}%`
     }
 }

@@ -51,10 +51,10 @@ $ranking = [
                 </div> <!-- /.menu-figure -->
             </div> <!-- /.menu-header-->
 
-            <div class="menu-content">
-                <button id="btn_play" class="btn btn-play">Jouer</button>
-                <button id="btn_ranking" class="btn btn-ranking">Classement</button>
-                <a href="https://github.com/wmalbos/GAME-Memory" id="documentation" class="btn btn-documentation"
+            <div class="menu-controls">
+                <button id="btn_play" class="btn btn-replay">Jouer</button>
+                <button class="btn btn-ranking">Classement</button>
+                <a href="https://github.com/wmalbos/GAME-Memory" class="btn btn-documentation"
                    target="_blank" rel="noopener">Documentation</a>
             </div> <!-- /.menu-list -->
         </div> <!-- /.menu-container -->
@@ -94,10 +94,33 @@ $ranking = [
             </div> <!-- /.menu-content -->
 
             <div class="menu-controls">
-                <button id="btn_replay" class="btn btn-replay">Rejouer</button>
+                <button id="btn_victory_replay" class="btn btn-replay">Rejouer</button>
+                <button class="btn btn-ranking">Classement</button>
+                <a href="https://github.com/wmalbos/GAME-Memory" class="btn btn-documentation"
+                   target="_blank" rel="noopener">Documentation</a>
             </div> <!-- /.menu-controls -->
         </div> <!-- /.menu-container -->
     </div> <!-- /.menu-victory -->
+
+    <!-- MENU de défaite -->
+    <div id="menu_loose" class="menu menu-loose">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h2 class="menu-title">Défaite...</h2>
+            </div> <!-- /.menu-header-->
+
+            <div class="menu-content">
+
+            </div> <!-- /.menu-content -->
+
+            <div class="menu-controls">
+                <button id="btn_loose_replay" class="btn btn-replay">Rejouer</button>
+                <button class="btn btn-ranking">Classement</button>
+                <a href="https://github.com/wmalbos/GAME-Memory" class="btn btn-documentation"
+                   target="_blank" rel="noopener">Documentation</a>
+            </div> <!-- /.menu-controls -->
+        </div> <!-- /.menu-container -->
+    </div> <!-- /.menu-loose -->
 
     <!-- Plateau - Le plateau du jeu contient toutes les cartes disposées sur la table de jeu -->
     <div id="board" class="board">
@@ -117,9 +140,23 @@ $ranking = [
                 </div> <!-- /.block -->
 
                 <div class="block block-time">
-                    <p class="block-label">Temps restant : <span class="block-value">0 min et 30 sec</span></p>
+                    <p class="block-label">Temps restant : <span class="block-value"><span id="timer_min">0</span> min et <span
+                                    id="timer_sec">0</span> sec</span></p>
+                    <div class="progress">
+                        <div id="progress" class="progress-content"></div>
+                    </div> <!-- /.progress -->
                 </div> <!-- /.block -->
             </div> <!-- /.board-stats -->
+            <div class="board-menu">
+                <button id="board_menu" class="btn-menu">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
+                         class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 448 512">
+                        <path fill="currentColor"
+                              d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+                    </svg>
+                    <span>MENU</span></button>
+            </div>
         </div> <!-- /.card-header -->
 
         <ul id="cards_list" class="cards-list"></ul> <!-- /.card-list -->
