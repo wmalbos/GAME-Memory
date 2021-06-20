@@ -33,7 +33,6 @@ $ranking = [
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Javascripts -->
-    <script src="assets/js/scripts.js"></script>
     <script src="assets/js/game.js"></script>
 </head>
 <body>
