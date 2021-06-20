@@ -3,14 +3,54 @@
 .memory-game {
   .card {
 
-    width: 150px;
-    height: 200px;
+    width: $card-width;
+    height: $card-height;
 
-    margin: 5px;
+    margin: $card-margin;
     padding: 0;
 
-    border-radius: 10px;
+    position: relative;
 
-    background:$color-black;
+    list-style: none;
+    perspective: 1000px; // La perspective est utilisée pour l'effet de carte retournée
+
+    .front-face, .back-face {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+
+      // Pour l'effet de carte en 3D, on applique deux div l'une sur l'autre ( l'avant et l'arrière de la carte )
+      // On retourne l'une des deux de 180° puis on cache les deux faces arrières de chaque div
+      // Ainsi, quand on retourne les deux en même temps de 180° l'effet de carte apparait
+      // Exemple : https://www.w3schools.com/howto/howto_css_flip_card.asp
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .front-face {
+      transform: rotateY(180deg);
+    }
+
+    .back-face {
+      background: url("../../assets/images/carte_verso.png") center center no-repeat;
+      background-size: 100% 100%;
+    }
+
+    // Lorsque la carte s'active, et se retourne
+    &.active {
+      .front-face {
+        transform: rotateY(360deg);
+      }
+
+      .back-face {
+        transform: rotateY(180deg);
+      }
+    }
   }
 }

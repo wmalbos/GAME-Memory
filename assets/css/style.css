@@ -1,17 +1,100 @@
-.memory-game .board .cards-list {
+.memory-game .board {
+  width: calc(6 * 149px + 12 * 5px);
+  margin: 0 auto;
+  padding: 5px;
+  background: green;
+  border-radius: 3px;
+}
+.memory-game .board .board-header {
+  width: 100%;
+  margin: 0 0 25px 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.memory-game .board .board-header .board-title {
+  width: 100%;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Rock Salt", cursive;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+.memory-game .board .board-header .board-stats {
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
+.memory-game .board .board-header .board-stats .block .block-label {
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Dancing Script", cursive;
+}
+.memory-game .board .board-header .board-stats .block .block-value {
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Dancing Script", cursive;
+}
+.memory-game .board .board-header .board-stats .block.block-counter {
+  width: 50%;
+}
+.memory-game .board .board-header .board-stats .block.block-level {
+  width: 50%;
+}
+.memory-game .board .board-header .board-stats .block.block-time {
+  width: 100%;
+}
+.memory-game .board .cards-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
 
 .memory-game .card {
-  width: 150px;
-  height: 200px;
+  width: 149px;
+  height: 216px;
   margin: 5px;
   padding: 0;
-  border-radius: 10px;
-  background: black;
+  position: relative;
+  list-style: none;
+  perspective: 1000px;
+}
+.memory-game .card .front-face, .memory-game .card .back-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.memory-game .card .front-face {
+  transform: rotateY(180deg);
+}
+.memory-game .card .back-face {
+  background: url("../../assets/images/carte_verso.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.memory-game .card.active .front-face {
+  transform: rotateY(360deg);
+}
+.memory-game .card.active .back-face {
+  transform: rotateY(180deg);
 }
 
 .memory-game .menu {
@@ -27,6 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 999;
 }
 .memory-game .menu .menu-container {
   width: 700px;
@@ -156,11 +240,69 @@
 .memory-game .menu-ranking .menu-controls .btn-return:hover {
   color: black;
 }
+.memory-game .menu-victory .menu-header {
+  width: 100%;
+  padding: 0;
+  margin: 0 0 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.memory-game .menu-victory .menu-header .menu-title {
+  width: 100%;
+  text-align: center;
+}
+.memory-game .menu-victory .menu-header .menu-figure {
+  width: 400px;
+  height: 300px;
+  background: black;
+}
+.memory-game .menu-victory .menu-controls {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.memory-game .menu-victory .menu-controls .btn {
+  width: 100%;
+  display: block;
+  margin: 0 0 10px 0;
+  padding: 0;
+  border: 2px solid black;
+  color: white;
+  background: black;
+  font-size: 20px;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  transition: linear 0.3s;
+}
+.memory-game .menu-victory .menu-controls .btn:hover {
+  color: black;
+  background: white;
+  cursor: pointer;
+}
+.memory-game .menu-victory .menu-controls .btn-replay {
+  background: black;
+  border-color: black;
+}
+.memory-game .menu-victory .menu-controls .btn-replay:hover {
+  color: black;
+}
 
 html, body {
   width: 100%;
+  min-height: 100%;
   padding: 0;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */
