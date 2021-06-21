@@ -93,6 +93,17 @@ $players = Statistic::getAllStatistics($database);
             </div> <!-- /.menu-header-->
 
             <div class="menu-content">
+
+                <?php if (count($players) > 0) { ?>
+                    <ul class="item-list">
+                        <?php foreach ($players as $key => $item) { ?>
+                            <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item->getPlayer() . ' avec un score de ' . $item->getScore() . ' - '  ?></li>
+                        <?php } ?>
+                    </ul> <!-- /.menu-list -->
+                <?php } else { ?>
+                    <p class="empty">Aucune donnée disponible</p>
+                <?php } ?>
+
                 <form action="action.php" method="post" class="form form-rank">
                     <div class="form-group">
                         <label for="rank_player_name">Nom du joueur :</label>
