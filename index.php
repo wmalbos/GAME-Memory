@@ -1,18 +1,18 @@
 <?php
 
-// Liste des 10 meilleurs joueurs
-$ranking = [
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-    ['player' => 'John Smith', 'score' => 10],
-]
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require __DIR__ . '/vendor/autoload.php';
+
+use App\Database;
+use App\Statistic;
+
+$database = new Database();
+
+// On récupère toutes les entrées des statistiques
+$players = Statistic::getAllStatistics($database);
 
 ?>
 
@@ -41,7 +41,7 @@ $ranking = [
 <div id="game" class="memory-game">
 
     <!-- MENU - Nouvelle partie, Classements des joueurs, Github  -->
-    <div id="menu" class="menu menu-general active">
+    <div id="menu" class="menu menu-general">
         <div class="menu-container">
             <div class="menu-header">
                 <h2 class="menu-title">Jeux de mémoire</h2>
@@ -67,11 +67,15 @@ $ranking = [
             </div> <!-- /.menu-header -->
 
             <div class="menu-content">
-                <ul class="item-list">
-                    <?php foreach ($ranking as $key => $item) { ?>
-                        <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item['player'] . ' avec un score de ' . $item['score']; ?></li>
-                    <?php } ?>
-                </ul> <!-- /.menu-list -->
+                <?php if (count($players) > 0) { ?>
+                    <ul class="item-list">
+                        <?php foreach ($players as $key => $item) { ?>
+                            <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item->getPlayer() . ' avec un score de ' . $item->getScore() . ' - '  ?></li>
+                        <?php } ?>
+                    </ul> <!-- /.menu-list -->
+                <?php } else { ?>
+                    <p class="empty">Aucune donnée disponible</p>
+                <?php } ?>
             </div> <!-- /.menu-content -->
 
             <div class="menu-controls">
@@ -82,14 +86,23 @@ $ranking = [
     </div>
 
     <!-- MENU de victoire -->
-    <div id="menu_victory" class="menu menu-victory">
+    <div id="menu_victory" class="menu menu-victory active">
         <div class="menu-container">
             <div class="menu-header">
                 <h2 class="menu-title">Victoire !</h2>
             </div> <!-- /.menu-header-->
 
             <div class="menu-content">
-
+                <form action="action.php" method="post" class="form form-rank">
+                    <div class="form-group">
+                        <label for="rank_player_name">Nom du joueur :</label>
+                        <input type="text" name="rank_player_name" id="rank_player_name">
+                        <input type="hidden" name="rank_player_score" id="rank_player_score" value="100">
+                    </div> <!-- /.form-group -->
+                    <div class="form-controls">
+                        <input type="submit" id="rank_player_submit" value="Enregistrer">
+                    </div> <!-- /.form-group -->
+                </form> <!-- /.form-rank -->
             </div> <!-- /.menu-content -->
 
             <div class="menu-controls">

@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         this.game.stop();
     });
 
-    btn_replay[0].click();
+    // btn_replay[0].click();
 
 }, false);
 

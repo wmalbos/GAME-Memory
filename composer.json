@@ -1,10 +1,15 @@
 {
-    "name": "wmalbos/game-memory",
-    "authors": [
-        {
-            "name": "William Malbos",
-            "email": "wmalbos@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "wmalbos/game-memory",
+  "authors": [
+    {
+      "name": "William Malbos",
+      "email": "wmalbos@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
 }
