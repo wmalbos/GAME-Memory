@@ -50,7 +50,7 @@ class Statistic
         $database->connect();
 
         // On execute une requête
-        $query = 'SELECT * FROM statistics';
+        $query = 'SELECT * FROM memory_statistics';
         $response = $database->getConnexion()->query($query);
 
         // On récupère les résultats, puis on créer un objet pour chaque résultat
@@ -71,7 +71,7 @@ class Statistic
         $database->connect();
 
         // Préparation de la requête
-        $query = 'INSERT INTO statistics (player, score, created_at) VALUES (:player_name, :player_score, :created_at)';
+        $query = 'INSERT INTO memory_statistics (player, score, created_at) VALUES (:player_name, :player_score, :created_at)';
         $stmt = $database->getConnexion()->prepare($query);
 
         // Execution de la requête

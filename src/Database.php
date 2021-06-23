@@ -13,13 +13,20 @@ namespace App;
  */
 class Database
 {
-    const DB_USERNAME = 'root';
-    const DB_PASSWORD = 'root';
-    const DB_HOST = '127.0.0.1';
-    const DB_PORT = '8889';
-    const DB_NAME = 'memory_game';
+    /**
+     * Tableau de la configuration de la base de donnée
+     */
+    private $configuration;
 
+    /**
+     * Connexion à la base de donnée
+     */
     private $connexion;
+
+    public function __construct()
+    {
+        $this->configuration = include 'assets/config/database.php';
+    }
 
     /**
      * Connexion à la base de donnée
@@ -27,7 +34,7 @@ class Database
     public function connect()
     {
         try {
-            $this->connexion = new \PDO('mysql:dbname=' . self::DB_NAME . ';host=' . self::DB_HOST . ':'.self::DB_PORT.';charset=utf8', self::DB_USERNAME, self::DB_PASSWORD);
+            $this->connexion = new \PDO('mysql:dbname=' . $this->configuration['db_name'] . ';host=' . $this->configuration['db_host'] . ':' . $this->configuration['db_port'] . ';charset=utf8', $this->configuration['db_username'], $this->configuration['db_password']);
         } catch (\PDOException $e) {
             printf('Échec de la connexion : %s\n', $e->getMessage());
             exit();
