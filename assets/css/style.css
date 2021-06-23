@@ -269,7 +269,7 @@
 .memory-game .menu .menu-header {
   width: 100%;
   padding: 0;
-  margin: 0 0 50px 0;
+  margin: 0 0 30px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,6 +303,16 @@
   font-weight: 700;
   font-family: "Rock Salt", cursive;
   text-align: center;
+  position: relative;
+}
+.memory-game .menu .menu-header .menu-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 2px;
+  background: black;
 }
 .memory-game .menu .menu-controls {
   width: 100%;
@@ -315,7 +325,6 @@
 }
 .memory-game .menu .menu-controls .btn {
   width: 100%;
-  display: block;
   margin: 10px 0 0 0;
   padding: 0;
   border: 2px solid black;
@@ -326,6 +335,9 @@
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: linear 0.3s;
 }
 .memory-game .menu .menu-controls .btn:hover {
@@ -333,19 +345,27 @@
   background: white;
   cursor: pointer;
 }
-.memory-game .menu .menu-controls .btn-play {
+.memory-game .menu .menu-controls .btn-replay {
   background: green;
   border-color: green;
 }
-.memory-game .menu .menu-controls .btn-play:hover {
+.memory-game .menu .menu-controls .btn-replay svg {
+  width: 18px;
+  margin: 0 15px 0 0;
+}
+.memory-game .menu .menu-controls .btn-replay:hover {
   color: green;
 }
 .memory-game .menu .menu-controls .btn-ranking {
-  background: pink;
-  border-color: pink;
+  background: orange;
+  border-color: orange;
+}
+.memory-game .menu .menu-controls .btn-ranking svg {
+  width: 18px;
+  margin: 0 15px 0 0;
 }
 .memory-game .menu .menu-controls .btn-ranking:hover {
-  color: pink;
+  color: orange;
 }
 .memory-game .menu .menu-controls .btn-return {
   background: black;
@@ -353,6 +373,28 @@
 }
 .memory-game .menu .menu-controls .btn-return:hover {
   color: black;
+}
+.memory-game .menu-general .rules-list {
+  margin: 0 0 25px 0;
+}
+.memory-game .menu-general .rules-list .rule {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  list-style: none;
+  padding: 5px 0;
+}
+.memory-game .menu-ranking .ranks-list {
+  margin: 0 0 25px 0;
+}
+.memory-game .menu-ranking .ranks-list .rank {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  list-style: none;
+  padding: 5px 0;
 }
 .memory-game .menu-victory .menu-header, .memory-game .menu-loose .menu-header {
   width: 100%;

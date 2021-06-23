@@ -43,7 +43,7 @@
       width: 100%;
 
       padding: 0;
-      margin: 0 0 50px 0;
+      margin: 0 0 30px 0;
 
       display: flex;
       align-items: center;
@@ -85,6 +85,22 @@
         font-weight: 700;
         font-family: 'Rock Salt', cursive;
         text-align: center;
+
+        position: relative;
+
+        // OPTIONNEL - Utilisé pour mettre le petit trait sous le titre
+        &:after{
+          content:'';
+
+          position: absolute;
+          bottom:0;
+          left: calc(50% - 30px);
+
+          width: 60px;
+          height: 2px;
+
+          background:$color-black;
+        }
       }
     }
 
@@ -102,8 +118,6 @@
       .btn {
         width: 100%;
 
-        display: block;
-
         margin: 10px 0 0 0;
         padding: 0;
 
@@ -118,6 +132,10 @@
         text-decoration: none;
         text-align: center;
 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         transition: linear .3s;
 
         &:hover {
@@ -127,21 +145,30 @@
           cursor: pointer;
         }
 
-        &-play {
+        &-replay {
           background: $color-green;
           border-color: $color-green;
 
+          svg {
+            width: 18px;
+            margin: 0 15px 0 0;
+          }
           &:hover {
             color: $color-green;
           }
         }
 
         &-ranking {
-          background: $color-pink;
-          border-color: $color-pink;
+          background: $color-orange;
+          border-color: $color-orange;
+
+          svg {
+            width: 18px;
+            margin: 0 15px 0 0;
+          }
 
           &:hover {
-            color: $color-pink;
+            color: $color-orange;
           }
         }
 
@@ -157,6 +184,42 @@
     }
 
     // Menu d'affichage en cas de victoire / défaite
+
+    &-general {
+      .rules-list{
+
+        margin: 0 0 25px 0;
+        .rule {
+
+          font-size: 15px;
+          font-weight: 400;
+          font-family: "Open Sans", sans-serif;
+          text-align: center;
+
+          list-style: none;
+
+          padding: 5px 0;
+        }
+      }
+    }
+
+    &-ranking{
+      .ranks-list{
+
+        margin: 0 0 25px 0;
+        .rank {
+
+          font-size: 15px;
+          font-weight: 400;
+          font-family: "Open Sans", sans-serif;
+          text-align: center;
+
+          list-style: none;
+
+          padding: 5px 0;
+        }
+      }
+    }
     &-victory, &-loose {
       .menu-header {
         width: 100%;
