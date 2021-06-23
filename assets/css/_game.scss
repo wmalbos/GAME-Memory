@@ -29,30 +29,33 @@
       width: 500px;
       height: auto;
 
-      padding: 25px;
+
       margin: 0;
 
       position: relative;
-
+      overflow: hidden;
       background: rgba(255, 255, 255, 1);
 
-      overflow: hidden;
     }
 
     .menu-header {
       width: 100%;
 
       padding: 0;
-      margin: 0 0 30px 0;
+      margin: 0 0 50px 0;
 
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
 
+      position: relative;
+
+
+
       .btn-github {
         width: 150px;
-        background: #b62b1e;
+        background: $color-red;
 
         position: absolute;
         top: 30px;
@@ -102,6 +105,8 @@
           background:$color-black;
         }
       }
+
+
     }
 
     .menu-controls {
@@ -114,6 +119,54 @@
       flex-direction: column;
 
       margin: 0 auto;
+      padding: 0 25px 25px 25px;
+
+      .menu-close {
+        position: absolute;
+        top:-10px;
+        right: -10px;
+
+        width: 30px;
+        height: 30px;
+
+        background:$color-black;
+        color:$color-white;
+        border-radius: 50%;
+        border:none;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.7);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.7);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.7);
+
+        transition: linear .3s;
+        svg {
+          width: 10px;
+
+          transition: linear .3s;
+        }
+
+        &:hover{
+          top:-15px;
+          right: -15px;
+
+          width: 40px;
+          height: 40px;
+
+          background: $color-red;
+
+          svg {
+            width: 15px;
+
+            transform: rotate(90deg);
+          }
+        }
+
+      }
 
       .btn {
         width: 100%;
@@ -173,11 +226,11 @@
         }
 
         &-return {
-          background: $color-black;
-          border-color: $color-black;
+          background: $color-brown;
+          border-color: $color-brown;
 
           &:hover {
-            color: $color-black;
+            color: $color-brown;
           }
         }
       }

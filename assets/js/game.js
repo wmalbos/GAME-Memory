@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let btn_ranking = document.getElementsByClassName('btn-ranking');
     let btn_ranking_return = document.getElementById('btn_ranking_return');
     let btn_board_menu = document.getElementById('board_menu');
+    let btn_menu_close = document.getElementsByClassName('menu-close');
 
     // Jeu Memory
     let game = new Game();
@@ -45,6 +46,21 @@ document.addEventListener('DOMContentLoaded', function () {
             menu_victory.classList.remove('active');
             menu_loose.classList.remove('active');
             menu_ranking.classList.add('active');
+        });
+    }
+
+    /**
+     * Ecoute l'évènement de clique sur les boutons du menu "Fermer la modal",
+     * Ferme tous les menus
+     */
+    for (let i = 0; i < btn_menu_close.length; i++) {
+        btn_menu_close[i].addEventListener('click', (event) => {
+            event.preventDefault();
+
+            menu_general.classList.remove('active');
+            menu_ranking.classList.remove('active');
+            menu_victory.classList.remove('active');
+            menu_loose.classList.remove('active');
         });
     }
 
@@ -134,6 +150,14 @@ class Game {
         // On joue un son de défaite
         this.audio_failed.volume = 1;
         this.audio_failed.play();
+    }
+
+    // Gestion de l'audio du jeu
+    audioManager(file, volume){
+        file.pause(); // On arrête le son s'il est déjà en cours de lecture
+        file.currentTime = 0; // On réinitialise la lecture au début
+        file.volume = volume; // On définit le volume
+        file.play(); // On lance la lecture
     }
 }
 
@@ -230,8 +254,7 @@ class Board {
                 element.classList.add('active')
 
                 // On joue un son
-                board.game.audio_flip.volume = 1;
-                board.game.audio_flip.play();
+                board.game.audioManager(board.game.audio_flip, 1);
 
                 // On ajoute la carte choisie à la main courante
                 board.current_hand.push(position);
@@ -257,8 +280,8 @@ class Board {
                             dom_second_card.classList.remove('active')
 
                             // On joue un son d'echec
-                            board.game.audio_error.volume = 0.4;
-                            board.game.audio_error.play();
+                            board.game.audioManager(board.game.audio_error, 0.4);
+
 
                             board.current_hand = [];
                         }, 750)
@@ -271,8 +294,7 @@ class Board {
                         board.return_cards.push(second_card);
 
                         // On joue un son de success
-                        board.game.audio_success.volume = 1;
-                        board.game.audio_success.play();
+                        board.game.audioManager(board.game.audio_success, 1);
 
                         // On vérifie si le joueur à gagné
                         if (board.checkEndGame()) {
