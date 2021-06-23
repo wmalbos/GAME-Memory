@@ -6,7 +6,7 @@ import Countdown from './Countdown.js'
  */
 export default class Game {
 
-    pair_numbers = 1; // Nombre de paires de cartes dans la partie
+    pair_numbers = 9; // Nombre de paires de cartes dans la partie
     game_duration = 120; // Décompte restant en secondes avant la fin de la partie
     countdown = null; // Objet compte à rebours utilisé pour le décompte de temps
     game_counter = 0; // Nombre de parties jouées
