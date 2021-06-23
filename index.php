@@ -1,5 +1,6 @@
 <?php
 
+// On demande à afficher les erreurs distinctements ( /!\ à retirer en production /!\)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,6 +10,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Database;
 use App\Statistic;
 
+// On récupère la base de donnée
 $database = new Database();
 
 // On récupère toutes les entrées des statistiques
@@ -37,24 +39,31 @@ $players = Statistic::getAllStatistics($database);
 </head>
 <body>
 
-
 <div id="game" class="memory-game">
 
     <!-- MENU - Nouvelle partie, Classements des joueurs, Github  -->
-    <div id="menu" class="menu menu-general">
+    <div id="menu" class="menu menu-general active">
         <div class="menu-container">
             <div class="menu-header">
-                <h2 class="menu-title">Jeux de mémoire</h2>
-                <div class="menu-figure">
-                    <img src="../assets/images/menu-header.png" alt="Menu - Memory">
-                </div> <!-- /.menu-figure -->
+                <h2 class="menu-title">Règles du jeu</h2>
+
+                <a href="https://github.com/wmalbos/GAME-Memory" class="btn btn-github"
+                   target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg> Github</a>
             </div> <!-- /.menu-header-->
+
+            <div class="menu-content">
+
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pharetra metus libero, eget commodo.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pharetra metus libero, eget commodo quam dictum efficitur.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit quisque pharetra metus.</li>
+                </ul>
+            </div> <!-- /.menu-content -->
 
             <div class="menu-controls">
                 <button id="btn_play" class="btn btn-replay">Jouer</button>
-                <button class="btn btn-ranking">Classement</button>
-                <a href="https://github.com/wmalbos/GAME-Memory" class="btn btn-documentation"
-                   target="_blank" rel="noopener">Documentation</a>
+                <button class="btn btn-ranking">Classements</button>
             </div> <!-- /.menu-list -->
         </div> <!-- /.menu-container -->
     </div> <!-- /.menu -->
@@ -70,7 +79,7 @@ $players = Statistic::getAllStatistics($database);
                 <?php if (count($players) > 0) { ?>
                     <ul class="item-list">
                         <?php foreach ($players as $key => $item) { ?>
-                            <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item->getPlayer() . ' avec un score de ' . $item->getScore() . ' - '  ?></li>
+                            <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item->getPlayer() . ' avec un score de ' . $item->getScore() . ' - ' ?></li>
                         <?php } ?>
                     </ul> <!-- /.menu-list -->
                 <?php } else { ?>
@@ -86,7 +95,7 @@ $players = Statistic::getAllStatistics($database);
     </div>
 
     <!-- MENU de victoire -->
-    <div id="menu_victory" class="menu menu-victory active">
+    <div id="menu_victory" class="menu menu-victory">
         <div class="menu-container">
             <div class="menu-header">
                 <h2 class="menu-title">Victoire !</h2>
@@ -97,7 +106,7 @@ $players = Statistic::getAllStatistics($database);
                 <?php if (count($players) > 0) { ?>
                     <ul class="item-list">
                         <?php foreach ($players as $key => $item) { ?>
-                            <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item->getPlayer() . ' avec un score de ' . $item->getScore() . ' - '  ?></li>
+                            <li class="item"><?php echo 'Joueur n°' . ($key + 1) . ' : ' . $item->getPlayer() . ' avec un score de ' . $item->getScore() . ' - ' ?></li>
                         <?php } ?>
                     </ul> <!-- /.menu-list -->
                 <?php } else { ?>
@@ -147,29 +156,9 @@ $players = Statistic::getAllStatistics($database);
 
     <!-- Plateau - Le plateau du jeu contient toutes les cartes disposées sur la table de jeu -->
     <div id="board" class="board">
+
         <div class="board-header">
             <h1 class="board-title">Jeu de mémoire</h1>
-            <div class="board-stats">
-                <div class="block block-games">
-                    <p class="block-label">Nombre de parties : <span id="game_counter" class="block-value">0</span></p>
-                </div> <!-- /.block -->
-
-                <div class="block block-counter">
-                    <p class="block-label">Nombre de coups : <span id="shots_counter" class="block-value">3</span></p>
-                </div> <!-- /.block -->
-
-                <div class="block block-level">
-                    <p class="block-label">Difficulté : <span class="block-value">1</span></p>
-                </div> <!-- /.block -->
-
-                <div class="block block-time">
-                    <p class="block-label">Temps restant : <span class="block-value"><span id="timer_min">0</span> min et <span
-                                    id="timer_sec">0</span> sec</span></p>
-                    <div class="progress">
-                        <div id="progress" class="progress-content"></div>
-                    </div> <!-- /.progress -->
-                </div> <!-- /.block -->
-            </div> <!-- /.board-stats -->
             <div class="board-menu">
                 <button id="board_menu" class="btn-menu">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
@@ -182,9 +171,79 @@ $players = Statistic::getAllStatistics($database);
             </div>
         </div> <!-- /.card-header -->
 
-        <ul id="cards_list" class="cards-list"></ul> <!-- /.card-list -->
+        <div class="board-content">
+            <ul id="cards_list" class="cards-list"></ul> <!-- /.card-list -->
+        </div><!-- /.board-content -->
+
+        <div class="board-footer">
+            <div class="board-stats">
+                <div class="column">
+                    <div class="block block-games">
+                        <p class="block-label">Nombre de parties : <span id="game_counter" class="block-value">0</span>
+                        </p>
+                    </div> <!-- /.block -->
+
+                    <div class="block block-counter">
+                        <p class="block-label">Nombre de coups : <span id="shots_counter" class="block-value">3</span>
+                        </p>
+                    </div> <!-- /.block -->
+
+                    <div class="block block-level">
+                        <p class="block-label">Difficulté : <span class="block-value">
+                                <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                         data-icon="star" class="svg-inline--fa fa-star fa-w-18" role="img"
+                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor"
+                                                          d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                <?php } ?>
+                            </span></p>
+                    </div> <!-- /.block -->
+                </div> <!-- /.column -->
+
+                <div class="column">
+                    <div class="block block-time">
+                        <p class="block-label">Temps restant : <span class="block-value"><span id="timer_min">0</span> min et <span
+                                        id="timer_sec">0</span> sec</span></p>
+                        <div class="progress">
+                            <div id="progress" class="progress-content"></div>
+                        </div> <!-- /.progress -->
+                    </div> <!-- /.block -->
+                </div> <!-- /.column -->
+            </div> <!-- /.board-stats -->
+        </div> <!-- /.card-header -->
+
+        <!-- OPTIONNEL - Cette section n'est utilisée que pour rajouter un peu de design -->
+        <div class="design-board">
+            <div class="corner corner-top-left"></div> <!-- /.corner -->
+            <div class="corner corner-top-right"></div> <!-- /.corner -->
+            <div class="corner corner-bottom-right"></div> <!-- /.corner -->
+            <div class="corner corner-bottom-left"></div> <!-- /.corner -->
+        </div> <!-- /.design -->
+
     </div> <!-- /.board -->
 
+    <!-- OPTIONNEL - Cette section n'est utilisée que pour rajouter un peu de design -->
+    <div class="design-game">
+        <div class="corner corner-top-right">
+            <div class="figure">
+                <img src="/assets/images/fruits_1.png" alt="">
+            </div>
+        </div> <!-- /.corner -->
+        <div class="corner corner-bottom-right">
+            <div class="figure">
+                <img src="/assets/images/fruits_2.png" alt="">
+            </div>
+        </div> <!-- /.corner -->
+        <div class="corner corner-bottom-left">
+            <div class="figure">
+                <img src="/assets/images/fruits_3.png" alt="">
+            </div>
+        </div> <!-- /.corner -->
+    </div> <!-- /.design -->
+
 </div> <!-- /.game -->
+
 </body>
 </html>

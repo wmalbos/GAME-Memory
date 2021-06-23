@@ -42,7 +42,7 @@
       background-size: 100% 100%;
     }
 
-    // Lorsque la carte s'active, et se retourne
+    // Lorsque la carte s'active, et se retourne, on retourne les deux faces en même temps
     &.active {
       .front-face {
         transform: rotateY(360deg);

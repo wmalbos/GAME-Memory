@@ -72,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
         this.game.stop();
     });
 
-    // btn_replay[0].click();
-
 }, false);
 
 
@@ -99,6 +97,7 @@ class Game {
         this.audio_success = new Audio('assets/audio/success.mp3');
         this.audio_victory = new Audio('assets/audio/victory.mp3');
         this.audio_failed = new Audio('assets/audio/failed.mp3');
+        this.audio_flip = new Audio('assets/audio/flip.mp3');
 
         // Création du compteur de temps
         this.countdown = new Countdown(this);
@@ -229,6 +228,10 @@ class Board {
                 // On retourne la carte
                 let element = document.getElementById(`card_${position}`)
                 element.classList.add('active')
+
+                // On joue un son
+                board.game.audio_flip.volume = 1;
+                board.game.audio_flip.play();
 
                 // On ajoute la carte choisie à la main courante
                 board.current_hand.push(position);

@@ -1,34 +1,66 @@
 @import "variables";
 
+// On encapsule notre style dans la classe .memory-game pour éviter tous "effet de bords"
+// (= Quand le style rentre en conflicts avec d'autres règles dans d'autres fichiers )
+// Ainsi on pourrais très bien inclure le jeu dans une page web sans risque
 .memory-game {
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+
+  background: #097d47;
+
   .board {
-    width: calc(6 * #{$card-width} + 12 * #{$card-margin});
+    width: 100%;
+    height: 100%;
 
     margin: 0 auto;
     padding: $card-margin;
 
-    background: $color-green;
-    border-radius: 3px;
+    position: relative;
 
-    // Partie du plateau qui affiche les statistiques du jeu en cours
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    // OPTIONNEL - Utilisée pour réaliser le cadre blanc autour du plateau
+    &:after {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+
+      border: 2px solid $color-white;
+
+      pointer-events: none;
+      z-index: 100;
+    }
+
     .board-header {
       width: 100%;
 
-      margin: 0 0 25px 0;
-      padding: 15px;
+      position: absolute;
+      top:0;
+      left:0;
+
+      margin: 0;
+      padding: 50px 0 25px 0;
 
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
 
-      position: relative;
-
       .board-title {
         width: 100%;
 
         color: $color-white;
-        font-size: 24px;
+        font-size: 34px;
         font-weight: 700;
         font-family: 'Rock Salt', cursive;
 
@@ -37,58 +69,154 @@
 
         margin: 0;
         padding: 0;
+
+        // OPTIONNEL - Utilisé pour mettre le petit trait sous le titre
+        &:after{
+          content:'';
+
+          position: absolute;
+          bottom:0;
+          left: calc(50% - 50px);
+
+          width: 100px;
+          height: 2px;
+
+          background:$color-white;
+        }
       }
 
-      .board-stats {
-        width: 80%;
+      .board-menu {
+        width: 150px;
+        height: 150px;
+
+        position: fixed;
+        top: 20px;
+        left: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        z-index: 500;
+
+        .btn-menu {
+          color: $color-white;
+          font-size: 28px;
+          font-weight: 700;
+          font-family: "Open Sans", sans-serif;
+          text-transform: uppercase;
+
+          background: none;
+          border: none;
+
+          cursor: pointer;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            width: 20px;
+            margin: 2px 3px 0 0;
+          }
+
+          &:hover {
+            color: $color-black;
+          }
+        }
+      }
+    }
+
+    .board-content {
+      .cards-list {
+
+        // On calcule la largeur en fonction du nombre de cartes que l'on souhaite placer en colonne
+        width: calc(6 * #{$card-width} + 12 * #{$card-margin});
 
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
 
+        margin: 0 auto;
+        padding: 0;
+      }
+    }
+
+    .board-footer {
+      width: 100%;
+
+      position: absolute;
+      bottom:0;
+      left:0;
+
+      margin: 0 auto 25px auto;
+      padding: 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .board-stats {
+        width: calc(100% - 400px);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .column {
+          width: 50%;
+
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-direction: column;
+        }
+
         .block {
+          width: 100%;
+
+          margin: 10px 0 0 0;
+          padding: 0;
+
           .block-label {
             color: $color-white;
-            font-size: 16px;
+            font-size: 24px;
             font-weight: 400;
             font-family: 'Dancing Script', cursive;
           }
 
           .block-value {
             color: $color-white;
-            font-size: 16px;
-            font-weight: 400;
+            font-size: 22px;
+            font-weight: 700;
             font-family: 'Dancing Script', cursive;
+
+            svg {
+              width: 18px;
+            }
           }
 
-          &.block-games {
-            width: 30%;
-          }
-
-          &.block-counter {
-            width: 30%;
-          }
-
-          &.block-level {
-            width: 30%;
-          }
-
+          // Design particulier pour le block de la barre de progression
           &.block-time {
             width: 100%;
 
+            // Barre de progression du temps
             .progress {
               width: 100%;
               height: 5px;
 
               position: relative;
 
+              margin: 15px 0 0 0;
+              padding: 0;
+
               border-radius: 2px;
 
               background: $color-white;
 
               &-content {
-
                 position: absolute;
                 top: 1px;
                 left: 1px;
@@ -98,6 +226,7 @@
 
                 transition: linear 1s;
 
+                // On applique la couleur en fonction de l'état de la barre de progression
                 &.default {
                   background: $color-green;
                 }
@@ -114,50 +243,54 @@
           }
         }
       }
-
-      .board-menu {
-        position: absolute;
-        top: 0;
-        right: 30px;
-
-        .btn-menu {
-          color: $color-white;
-          font-size: 20px;
-          font-weight: 700;
-          font-family: "Open Sans", sans-serif;
-          text-transform: uppercase;
-
-          background: none;
-          border: none;
-
-          cursor: pointer;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            width: 15px;
-            margin: 0 3px 0 0;
-          }
-          &:hover {
-            color: $color-black;
-          }
-        }
-      }
     }
 
-    // Partie tu plateau où l'on liste toutes les cartes du jeu en cours
-    .cards-list {
+    // OPTIONNEL - Section de design utilisée pour faire les coins du plateau
+    .design-board {
+      position: absolute;
+      top: 0;
+      left: 0;
+
       width: 100%;
+      height: 100%;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
+      z-index: 400;
 
-      margin: 0;
-      padding: 0;
+      pointer-events: none; // On ne veux pas pouvoir cliquer dessus
+
+      .corner {
+        width: 300px;
+        height: 300px;
+
+        background: #008b3c;
+
+        border: 2px solid $color-white;
+        border-radius: 50%;
+
+        &-top-left {
+          position: absolute;
+          top: -150px;
+          left: -150px;
+        }
+
+        &-top-right {
+          position: absolute;
+          top: -150px;
+          right: -150px;
+        }
+
+        &-bottom-right {
+          position: absolute;
+          bottom: -150px;
+          right: -150px;
+        }
+
+        &-bottom-left {
+          position: absolute;
+          bottom: -150px;
+          left: -150px;
+        }
+      }
     }
   }
 }
