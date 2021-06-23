@@ -41,7 +41,7 @@ class Statistic
      * Informations : Ici on utilise le mot clé "static", ainsi nous ne sommes
      * pas obligé d'instancier un objet pour pouvoir l'utiliser
      */
-    public static function getAllStatistics($database)
+    public static function getTopStatistics($database)
     {
         // Liste des statistiques
         $statistics = [];

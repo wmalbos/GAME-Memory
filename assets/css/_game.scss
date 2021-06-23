@@ -226,11 +226,11 @@
         }
 
         &-return {
-          background: $color-brown;
-          border-color: $color-brown;
+          background: $color-black;
+          border-color: $color-black;
 
           &:hover {
-            color: $color-brown;
+            color: $color-black;
           }
         }
       }
@@ -273,6 +273,7 @@
         }
       }
     }
+
     &-victory, &-loose {
       .menu-header {
         width: 100%;

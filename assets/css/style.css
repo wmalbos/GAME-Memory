@@ -403,11 +403,11 @@
   color: orange;
 }
 .memory-game .menu .menu-controls .btn-return {
-  background: #752525;
-  border-color: #752525;
+  background: black;
+  border-color: black;
 }
 .memory-game .menu .menu-controls .btn-return:hover {
-  color: #752525;
+  color: black;
 }
 .memory-game .menu-general .rules-list {
   margin: 0 0 25px 0;
