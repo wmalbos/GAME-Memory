@@ -41,6 +41,5 @@ Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes su
 
 <p float="center">
 <img width="330" src="./docs/screen_1.jpg">
-<img width="330" src="./docs/screen_2.jpg">
-<img width="330" src="./docs/screen_3.jpg">
+<img width="256" src="./docs/screen_2.jpg">
 </p>
