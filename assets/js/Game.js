@@ -6,7 +6,7 @@ import Countdown from './Countdown.js'
  */
 export default class Game {
 
-    pair_numbers = 9; // Nombre de paires de cartes dans la partie
+    pair_numbers = 1; // Nombre de paires de cartes dans la partie
     game_duration = 120; // Décompte restant en secondes avant la fin de la partie
     countdown = null; // Objet compte à rebours utilisé pour le décompte de temps
     game_counter = 0; // Nombre de parties jouées
@@ -20,6 +20,7 @@ export default class Game {
         this.dom_menu_victory = document.getElementById('menu_victory');
         this.dom_menu_loose = document.getElementById('menu_loose');
         this.dom_game_counter = document.getElementById('game_counter');
+        this.dom_menu_victory_score = document.getElementById('rank_player_score');
 
         // Fichiers audio
         this.audios['error'] = new Audio('assets/audio/error.mp3');
@@ -30,8 +31,6 @@ export default class Game {
 
         // Création du compteur de temps
         this.countdown = new Countdown(this);
-
-        console.log('ok')
     }
 
     /**
@@ -61,6 +60,9 @@ export default class Game {
 
         // On joue un son de victoire
         this.audioManager('victory', 1);
+
+        // Sauvegarde du score
+        this.dom_menu_victory_score.value = this.countdown.getRemainTime();
     }
 
     /**

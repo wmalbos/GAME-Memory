@@ -75,4 +75,14 @@ export default class Countdown {
 
         this.dom_progress.style.width = `${100 - percent}%`
     }
+
+
+    /**
+     * Retourne le temps restant
+     */
+    getRemainTime() {
+        var time = new Date(1970, 0, 1);  // On créer une nouvelle date "vide"
+        time.setSeconds(this.time_duration); // On ajoute le nombre de secondes restantes
+        return time.getHours() + ':'+  time.getMinutes() + ':' + time.getSeconds() ;
+    }
 }

@@ -25,7 +25,7 @@ class Statistic
 
     /**
      * Score du joueur
-     * @var integer
+     * @var string
      */
     private $score;
 
@@ -50,7 +50,7 @@ class Statistic
         $database->connect();
 
         // On execute une requête
-        $query = 'SELECT * FROM memory_statistics';
+        $query = 'SELECT * FROM memory_statistics ORDER BY score DESC LIMIT 5';
         $response = $database->getConnexion()->query($query);
 
         // On récupère les résultats, puis on créer un objet pour chaque résultat
@@ -118,7 +118,7 @@ class Statistic
     /**
      * @return int
      */
-    public function getScore(): ?int
+    public function getScore()
     {
         return $this->score;
     }
@@ -126,7 +126,7 @@ class Statistic
     /**
      * @param int $score
      */
-    public function setScore(?int $score): void
+    public function setScore( $score): void
     {
         $this->score = $score;
     }
