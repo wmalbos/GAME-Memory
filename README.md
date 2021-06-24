@@ -4,7 +4,9 @@
 
 == Voir la [démo en ligne](https://games.wmalbos.fr/memory) ==
 
-**Objectifs du projet :** Texte en rédaction...
+**Objectifs du projet :** _L'objectif du projet est de développer un jeu de société au format numérique._ 
+
+_Le projet pourrais alors être confié en guise d'exemple, à des étudiants pour leur montrer un code de base, pour développer leurs propres jeu (tetris, puissance 4, bataille navale, ...) en utilisant uniquement les bases de la programmation, sans utiliser de framework ni de design pattern spécifiques._
 
 ### I) Présentation du jeu
 
@@ -29,15 +31,34 @@ Il est possible de modifier l'expérience de jeu en modifiant quelques règles :
 
 #### a) Programmation Orienté Objets
 ##### 1) Le jeu
-Texte en rédaction...
+
+La structure du jeu suis la forme suivante : 
+- Jeu
+- Plateau
+- Carte
+
+Cette structure générique, est très modulaire, on peut l'utiliser pour inclure une multitude de fonctionnalité, simplement, tel que du multijoueurs en ayant 2 plateau sur un jeu par exemple. 
+
+On peut également l'utiliser dans d'autres jeu, comme un tetris. 
+- Jeu = Tetris
+- Plateau = Grille de jeu
+- Carte = Tetrominos
+
+ou alors une bataille navale
+- Jeu = Bataille Naval
+- Plateau = Grille de combat
+- Carte = Bateau
+
 ##### 2) Persistance des données
-Texte en rédaction...
+La classe Database permet de gérer, notamment, la connexion à la base de donnée. 
+
+La classe Statistics permet quant à elle de gérer le modèle Statistic mais également les requêtes en base de donnée sur cette table. 
 
 #### b) Graphisme et effets audio
-Texte en rédaction...
+Des graphismes simples (images, before, after, ..) et quelques effets audio (victoire, echec, ...) ont été ajoutés. L'objectifs est de motiver l'étudiant, en réalisant son propre mini prototype fonctionnel. On peut lui fournir un code de base pour l'aider à démarrer.
 
 #### c) Fichier de configuration
-Texte en rédaction...
+Le fichier de configuration est utilisé pour configurer la base de donnée et séparer la logique du code. En l'incluant dans le .gitignore on peut également en avoir un différent en local et sur le serveur de production.
 
 #### d) Makefile
 Le projet comporte un fichier **Makefile** qui permet de réaliser certaines actions rapidement en utilisant un IDE (Environnement De Développement), comme par exemple PhpStorm. 
