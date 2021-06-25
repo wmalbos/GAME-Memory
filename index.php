@@ -42,7 +42,7 @@ $players = Statistic::getTopStatistics($database);
 <div id="game" class="memory-game">
 
     <!-- MENU - Nouvelle partie, Classements des joueurs, Github  -->
-    <div id="menu" class="menu menu-general">
+    <div id="menu" class="menu menu-general active">
         <div class="menu-container">
             <div class="menu-header">
                 <h2 class="menu-title">Règles du jeu</h2>
@@ -149,7 +149,7 @@ $players = Statistic::getTopStatistics($database);
     </div>
 
     <!-- MENU de victoire -->
-    <div id="menu_victory" class="menu menu-victory active">
+    <div id="menu_victory" class="menu menu-victory">
         <div class="menu-container">
             <div class="menu-header">
                 <h2 class="menu-title">Victoire !</h2>

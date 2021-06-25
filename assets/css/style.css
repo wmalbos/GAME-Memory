@@ -242,6 +242,9 @@
   transform: rotateY(180deg);
 }
 
+.memory-game {
+  position: relative;
+}
 .memory-game .menu {
   width: 100%;
   height: 100%;
@@ -420,6 +423,10 @@
   list-style: none;
   padding: 5px 0;
 }
+.memory-game .menu-general .empty {
+  width: 100%;
+  text-align: center;
+}
 .memory-game .menu-ranking .ranks-list {
   margin: 0 0 25px 0;
 }
@@ -430,6 +437,10 @@
   text-align: center;
   list-style: none;
   padding: 5px 0;
+}
+.memory-game .menu-ranking .empty {
+  width: 100%;
+  text-align: center;
 }
 .memory-game .menu-victory .menu-header, .memory-game .menu-loose .menu-header {
   width: 100%;
@@ -459,6 +470,10 @@
   text-align: center;
   list-style: none;
   padding: 5px 0;
+}
+.memory-game .menu-victory .menu-content .empty, .memory-game .menu-loose .menu-content .empty {
+  width: 100%;
+  text-align: center;
 }
 .memory-game .menu-victory .menu-content .form-rank, .memory-game .menu-loose .menu-content .form-rank {
   width: 100%;
@@ -530,23 +545,23 @@
 }
 .memory-game .design-game .corner-top-left {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -25px;
+  left: -25px;
 }
 .memory-game .design-game .corner-top-right {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -25px;
+  right: -25px;
 }
 .memory-game .design-game .corner-bottom-right {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -25px;
+  right: -25px;
 }
 .memory-game .design-game .corner-bottom-left {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: -25px;
+  left: -25px;
 }
 
 * {

@@ -4,6 +4,8 @@
 
 .memory-game {
 
+  position: relative;
+
   // Affichage des différents menu en popin du jeu
   .menu {
     width: 100%;
@@ -256,6 +258,10 @@
           padding: 5px 0;
         }
       }
+      .empty{
+        width: 100%;
+        text-align: center;
+      }
     }
 
     &-ranking {
@@ -274,6 +280,10 @@
 
           padding: 5px 0;
         }
+      }
+      .empty{
+        width: 100%;
+        text-align: center;
       }
     }
 
@@ -319,6 +329,10 @@
 
             padding: 5px 0;
           }
+        }
+        .empty{
+          width: 100%;
+          text-align: center;
         }
 
         .form-rank {
@@ -418,26 +432,26 @@
 
       &-top-left {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: -25px;
+        left: -25px;
       }
 
       &-top-right {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: -25px;
+        right: -25px;
       }
 
       &-bottom-right {
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: -25px;
+        right: -25px;
       }
 
       &-bottom-left {
         position: absolute;
-        bottom: 0;
-        left: 0;
+        bottom: -25px;
+        left: -25px;
       }
     }
   }
