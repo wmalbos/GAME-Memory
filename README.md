@@ -77,6 +77,13 @@ Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes su
 - **make sass_dev** -- ( Cette commande permet de compiler de manière automatique les assets du projet )
 - **make sass_production** -- ( Cette commande permet de compiler les assets du projet pour la production et de les minifier pour améliorer les performances )
 
+#### e) Outil de déploiement
+
+Il est possible de déployer l'application simplement à l'aide des conteneurs de la technologie [Docker](https://fr.wikipedia.org/wiki/Docker_(logiciel)). Il suffit alors de fournir le conteneur, contenant les diverses dépendances de l'application, base de donnée ect.. pour permettre une installation rapide du projet sur une nouvelle machine (ou pour une mise en production)
+
+----- Rédaction en cours -----
+
+
 ### IV) Prévisualisations
 
 <p float="center">
