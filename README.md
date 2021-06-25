@@ -6,26 +6,30 @@
 
 **Objectifs du projet :** _L'objectif du projet est de développer un jeu de société au format numérique._ 
 
-_Le projet pourrais alors être confié en guise d'exemple, à des étudiants pour leur montrer un code de base, pour développer leurs propres jeu (tetris, puissance 4, bataille navale, ...) en utilisant uniquement les bases de la programmation, sans utiliser de framework ni de design pattern spécifiques._
+_Le projet pourrais alors être confié en guise d'exemple, à des étudiants pour leur montrer un code de base, pour développer leurs propres mini-jeu (tetris, puissance 4, bataille navale, ...) en utilisant uniquement les bases de la programmation, sans utiliser de framework ni de design pattern spécifiques._
 
 ### I) Présentation du jeu
 
-Initialement, le jeu "Mémory" ( ou "Jeu de mémoire" en français ) est un jeu de société édité par le groupe Ravensburger, sortie en 1959.
+Initialement, le jeu "Mémory" (ou "Jeu de mémoire" en français) est un jeu de société édité par le groupe Ravensburger, sortie en 1959.
 
-Dans cette version numérique à 1 joueur, le jeu se compose d'un certain nombre de paires de cartes portant des illustrations identiques. Les cartes est mélangées, puis retournées face contre table.
+Dans cette version numérique à 1 joueur, le jeu se compose d'un certain nombre de paires de cartes portant des illustrations identiques. Les cartes sont mélangées, puis retournées face contre table.
 
-Le joueur dois retourner deux cartes, si elles ne sont pas identiques, elle sont de nouveau retournées face contre table à leur emplacement de départ. Le jeu ce termine avec une victoire quand toutes les paires de cartes ont été découvertes ou une défaite lorsque le compte à rebours du jeu est arrivé à son terme. 
+Le joueur dois retourner deux cartes, si elles ne sont pas identiques, elle sont de nouveau retournées face contre table à leur emplacement d'origine. Le jeu ce termine avec une victoire quand toutes les paires de cartes ont été découvertes ou une défaite lorsque le compte à rebours du jeu est arrivé à son terme. 
+
+En savoir plus sur [wikipédia](https://fr.wikipedia.org/wiki/Memory_(jeu))
 
 ### II) Propositions de variantes et améliorations
 
 Il est possible de modifier l'expérience de jeu en modifiant quelques règles : 
 
-- On rajoute du temps à chaque fois qu'une paire de carte identique à été découverte.
-- Mode "multijoueurs" où le joueur qui découvre le plus grand nombre de pair de carte identique l'emporte.
-- Sauvegarde des différents score pour créer du challenge.
-- On rajoute une couleur unique aux illustrations pour augmenter la difficulté et perturber le joueur, il faut alors découvrire une paire de carte de même illustration et de même couleur.
-- Compter les nombres de coups, les nombre de parties, etc...
-- Ajout d'une musique d'ambiances et de sons ( découvrte d'une paire, victoire, echec, ... )
+- On rajoute du temps à chaque fois qu'une paire de carte identique à été découverte, pour simplifier le jeu.
+- Un mode "multijoueurs" où le joueur qui découvre le plus grand nombre de pair de carte identique l'emporte, par exemple.
+- Sauvegarde des différents score pour créer du challenge, avec un système de difficulté
+- On rajoute une couleur unique aux illustrations pour augmenter la difficulté et perturber le joueur, il faut alors découvrire une paire de carte de même illustration et de même couleur, on peut également jouer sur d'autres paramètres comme la taille, le sens, etc...
+- Compter les nombres de coups, les nombrse de parties, les nombres d'echecs, etc...
+- Ajout d'une musique d'ambiance et de sons ( menu, découvrte d'une paire, victoire, echec, ... )
+- Ajout d'un système de pause / reprise lorsque l'on ouvre le menu pour ne pas pardre la partie en cours
+- Et pleins d'autres possibilités en fonction de notre imagination
 
 ### III) Choix techniques
 
@@ -33,35 +37,38 @@ Il est possible de modifier l'expérience de jeu en modifiant quelques règles :
 ##### 1) Le jeu
 
 La structure du jeu suis la forme suivante : 
-- Jeu
-- Plateau
-- Carte
+- Classe "Jeu"
+- Classe "Plateau"
+- Classe "Carte"
 
-Cette structure générique, est très modulaire, on peut l'utiliser pour inclure une multitude de fonctionnalité, simplement, tel que du multijoueurs en ayant 2 plateau sur un jeu par exemple. 
+Cette structure générique, est très modulaire, on peut l'utiliser pour inclure une multitude de fonctionnalités, simplement, tel qu'un mode multijoueurs en ayant 2 plateau en même temps sur un jeu par exemple. 
 
-On peut également l'utiliser dans d'autres jeu, comme un tetris. 
+On peut également l'utiliser dans d'autres jeux, comme un tetris. 
 - Jeu = Tetris
 - Plateau = Grille de jeu
-- Carte = Tetrominos
+- Carte = Tetrominos (ce sont les pions aux diverses formes du jeu)
 
 ou alors une bataille navale
-- Jeu = Bataille Naval
+- Jeu = Bataille Navale
 - Plateau = Grille de combat
 - Carte = Bateau
 
-##### 2) Persistance des données
-La classe Database permet de gérer, notamment, la connexion à la base de donnée. 
+Des classes annexes sont utilisées, et réutilisables, comme le Countdown qui gère un décompte de temps (avec des méthodes comme start, stop, pause, resume) 
 
-La classe Statistics permet quant à elle de gérer le modèle Statistic mais également les requêtes en base de donnée sur cette table. 
+##### 2) Persistance des données
+La classe Database permet de gérer, notamment, la connexion à la base de donnée à l'aide d'un fichier de configuration. 
+La classe Statistics permet, quant à elle, de gérer le modèle Statistic mais également les requêtes en base de donnée sur cette table. 
+
+Il est possible, d'améliorer la structure en évoluant vers une structure [Modèle-Vue-Controlleur](https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur).
 
 #### b) Graphisme et effets audio
-Des graphismes simples (images, before, after, ..) et quelques effets audio (victoire, echec, ...) ont été ajoutés. L'objectifs est de motiver l'étudiant, en réalisant son propre mini prototype fonctionnel. On peut lui fournir un code de base pour l'aider à démarrer.
+Des graphismes simples (images, :before, :after, ..) et quelques effets audio (victoire, echec, ...) ont été ajoutés. L'objectifs est de motiver l'étudiant, en réalisant son propre mini-prototype fonctionnel. On peut lui fournir un code de base pour l'aider à démarrer, si besoin.
 
 #### c) Fichier de configuration
-Le fichier de configuration est utilisé pour configurer la base de donnée et séparer la logique du code. En l'incluant dans le .gitignore on peut également en avoir un différent en local et sur le serveur de production.
+Le fichier de configuration est utilisé pour configurer la base de donnée et séparer la logique du code. En l'incluant dans le .gitignore on peut également en avoir une configuration différente en local et sur le serveur de production.
 
 #### d) Makefile
-Le projet comporte un fichier **Makefile** qui permet de réaliser certaines actions rapidement en utilisant un IDE (Environnement De Développement), comme par exemple PhpStorm. 
+Le projet comporte un fichier Makefile qui permet de réaliser certaines actions rapidement en utilisant un IDE ([Environnement De Développement](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement)). 
 
 Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes suivantes : 
 
