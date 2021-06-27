@@ -140,7 +140,9 @@ Pour supprimer la stack :
 docker stack rm game_memory
 ```
 
+##### 6) Mises à jours
 
+La section sur l'utilisation / explications de docker est en train d'être corrigé et amélioré pour permettre une meilleure compréhension de tous
 
 ### IV) Prévisualisations
 
