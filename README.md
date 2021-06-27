@@ -77,11 +77,69 @@ Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes su
 - **make sass_dev** -- ( Cette commande permet de compiler de manière automatique les assets du projet )
 - **make sass_production** -- ( Cette commande permet de compiler les assets du projet pour la production et de les minifier pour améliorer les performances )
 
-#### e) Outil de déploiement
+#### e) Outils de déploiement
 
-Il est possible de déployer l'application simplement à l'aide des conteneurs de la technologie [Docker](https://fr.wikipedia.org/wiki/Docker_(logiciel)). Il suffit alors de fournir le conteneur, contenant les diverses dépendances de l'application, base de donnée ect.. pour permettre une installation rapide du projet sur une nouvelle machine (ou pour une mise en production)
+Il est possible de déployer l'application simplement à l'aide des conteneurs de la technologie [Docker](https://fr.wikipedia.org/wiki/Docker_(logiciel)). 
+Il suffit alors de fournir le conteneur, contenant les diverses dépendances de l'application, base de donnée ect.. pour permettre une installation rapide du projet sur une nouvelle machine (ou pour une mise en production)
 
------ Rédaction en cours -----
+##### 1) Installation
+
+Suivre [ce lien](https://docs.docker.com/get-docker/) pour installer docker sur sa machine
+
+
+##### 2) Pré-charger les images ( optionnel )
+
+Il est possible de pré-charger les différentes images qui seront utilisées en utilisant la commande **docker pull [NOM_IMAGE]**
+
+```sh
+docker pull php:8.0-apache
+docker pull mysql:5.7
+docker pull composer:2
+docker pull phpmyadmin/phpmyadmin:latest
+```
+
+
+##### 2) Construction de l'image
+
+Dans un terminal, ce placer dans le dossier **docker** où ce trouve le projet, puis effectuer la commande suivante :
+
+```sh
+docker image build -t wmalbos/game-memory:1.0 .
+```
+
+Informations :
+
+**-t wmalbos/game-memory**  pour le nom de l'image à créer
+
+**:1.0** pour spécifier flag de la version
+
+**.** pour spécifier le chemin du Dockerfile, ici le répertoire courant
+
+##### 3) Créer le volume "Data"
+
+Remplace **VOTRE_NOM** par le nom de votre dossier racine
+
+```sh
+docker volume create data --opt type=none --opt device=/Users/VOTRE_NOM/data --opt o=bind
+```
+
+
+##### 4) Création de la stack
+
+Pour créer la stack :
+
+```sh
+docker stack deploy -c docker-compose.yml game_memory
+```
+
+##### 5) Suppression de la stack
+
+Pour supprimer la stack : 
+
+```sh
+docker stack rm game_memory
+```
+
 
 
 ### IV) Prévisualisations

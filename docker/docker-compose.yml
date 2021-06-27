@@ -1,0 +1,64 @@
+version: "3.7"
+
+x-defaults:
+  network: &network
+    networks:
+      - net
+
+services:
+  php:
+    image: wmalbos/game-memory:1.0
+    ports:
+      - 80:80
+    volumes:
+      - ..:/var/www
+    configs:
+      - source: apache-vhosts
+        target: /etc/apache2/sites-available/000-default.conf
+      - source: php-ini
+        target: /usr/local/etc/php/conf.d/local.ini
+    <<: *network
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    restart: always
+    command: --init-file /var/www/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_pwd
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_pass
+      - MYSQL_DATABASE=db_name
+    volumes:
+      - data:/var/lib/mysql
+      - ./mysql/db_init.sql:/var/www/init.sql
+    secrets:
+      - db_pwd
+    <<: *network
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=db_name
+      - PMA_USER=db_user
+      - PMA_PASSWORD=db_pass
+      - UPLOAD_LIMIT=20M
+    ports:
+      - 8080:80
+    <<: *network
+
+networks:
+  net:
+
+secrets:
+  db_pwd:
+    file: ./mysql/root_password.txt
+
+configs:
+  apache-vhosts:
+    file: ./apache/vhosts.conf
+  php-ini:
+    file: ./php/local.ini
+
+volumes: 
+  data:
+     external: true

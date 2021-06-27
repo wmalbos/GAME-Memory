@@ -355,19 +355,19 @@ $players = Statistic::getTopStatistics($database);
     <div class="design-game">
         <div class="corner corner-top-right">
             <div class="figure">
-                <img src="/assets/images/fruits_1.png" alt="">
+                <img src="/sources/assetss/assets/images/fruits_1.png" alt="">
             </div>
         </div>
 
         <div class="corner corner-bottom-right">
             <div class="figure">
-                <img src="/assets/images/fruits_2.png" alt="">
+                <img src="/sources/assetss/assets/images/fruits_2.png" alt="">
             </div>
         </div>
 
         <div class="corner corner-bottom-left">
             <div class="figure">
-                <img src="/assets/images/fruits_3.png" alt="">
+                <img src="/sources/assetss/assets/images/fruits_3.png" alt="">
             </div>
         </div>
     </div>
