@@ -22,14 +22,14 @@ En savoir plus sur [wikipédia](https://fr.wikipedia.org/wiki/Memory_(jeu))
 
 Il est possible de modifier l'expérience de jeu en modifiant quelques règles : 
 
-- On rajoute du temps à chaque fois qu'une paire de cartes identiques a été découverte, pour simplifier le jeu.
-- Un mode "multijoueur" où le joueur qui découvre le plus grand nombre de pair de carte identique l'emporte, par exemple.
-- Sauvegarde des différents scores pour créer du challenge, avec un système de difficulté
-- On rajoute une couleur unique aux illustrations pour augmenter la difficulté et perturber le joueur, il faut alors découvrir une paire de cartes de même illustration et de même couleur, on peut également jouer sur d'autres paramètres comme la taille, le sens, etc...
-- Compter les nombres de coups, les nombres de parties, les nombres d'échecs, etc...
-- Ajout d'une musique d'ambiance et de sons ( menu, découverte d'une paire, victoire, échec, ... )
-- Ajout d'un système de pause / reprise lorsque l'on ouvre le menu pour ne pas perdre la partie en cours
-- Et pleins d'autres possibilités en fonction de notre imagination
+- on rajoute du temps à chaque fois qu'une paire de cartes identiques a été découverte, pour simplifier le jeu.
+- un mode "multijoueur" où le joueur qui découvre le plus grand nombre de pair de carte identique l'emporte, par exemple.
+- sauvegarde des différents scores pour créer du challenge, avec un système de difficulté
+- on rajoute une couleur unique aux illustrations pour augmenter la difficulté et perturber le joueur, il faut alors découvrir une paire de cartes de même illustration et de même couleur, on peut également jouer sur d'autres paramètres comme la taille, le sens, etc...
+- compter les nombres de coups, les nombres de parties, les nombres d'échecs, etc...
+- ajout d'une musique d'ambiance et de sons ( menu, découverte d'une paire, victoire, échec, ... )
+- ajout d'un système de pause / reprise lorsque l'on ouvre le menu pour ne pas perdre la partie en cours
+- et pleins d'autres possibilités en fonction de notre imagination
 
 ### III) Choix techniques
 
@@ -68,7 +68,7 @@ Des graphismes simples (images, :before, :after, ..) et quelques effets audio (v
 Le fichier de configuration est utilisé pour configurer la base de données et séparer la logique du code. En l'incluant dans le .gitignore on peut également en avoir une configuration différente en local et sur le serveur de production.
 
 #### d) Makefile
-Le projet comporte un fichier Makefile qui permet de réaliser certaines actions rapidement en utilisant un IDE ([Environnement De Développement](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement)). 
+Le projet comporte un fichier Makefile qui permet de réaliser certaines actions rapidement en utilisant un IDE ([Environnement de développement](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement)). 
 
 Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes suivantes : 
 
