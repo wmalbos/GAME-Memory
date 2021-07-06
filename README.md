@@ -6,7 +6,7 @@
 
 **Objectifs du projet :** _L'objectif du projet est de développer un jeu de société au format numérique._ 
 
-_Le projet pourrait alors être confié en guise d'exemple, à des étudiants pour leur montrer un code de base, pour développer leur propres mini-jeux (tetris, puissance 4, bataille navale, ...) en utilisant uniquement les bases de la programmation, sans utiliser de framework ni de design pattern spécifiques._
+_Le projet pourrait alors être confié en guise d'exemple, à des étudiants pour leur montrer un code de base, pour développer leurs propres mini-jeux (tetris, puissance 4, bataille navale, ...) en utilisant uniquement les bases de la programmation, sans utiliser de framework ni de design pattern spécifiques._
 
 ### I) Présentation du jeu
 
@@ -22,13 +22,13 @@ En savoir plus sur [wikipédia](https://fr.wikipedia.org/wiki/Memory_(jeu))
 
 Il est possible de modifier l'expérience de jeu en modifiant quelques règles : 
 
-- On rajoute du temps à chaque fois qu'une paire de cartes identiques à été découverte, pour simplifier le jeu.
+- On rajoute du temps à chaque fois qu'une paire de cartes identiques a été découverte, pour simplifier le jeu.
 - Un mode "multijoueur" où le joueur qui découvre le plus grand nombre de pair de carte identique l'emporte, par exemple.
 - Sauvegarde des différents scores pour créer du challenge, avec un système de difficulté
 - On rajoute une couleur unique aux illustrations pour augmenter la difficulté et perturber le joueur, il faut alors découvrir une paire de cartes de même illustration et de même couleur, on peut également jouer sur d'autres paramètres comme la taille, le sens, etc...
 - Compter les nombres de coups, les nombres de parties, les nombres d'échecs, etc...
 - Ajout d'une musique d'ambiance et de sons ( menu, découverte d'une paire, victoire, échec, ... )
-- Ajout d'un système de pause / reprise lorsque l'on ouvre le menu pour ne pas pardre la partie en cours
+- Ajout d'un système de pause / reprise lorsque l'on ouvre le menu pour ne pas perdre la partie en cours
 - Et pleins d'autres possibilités en fonction de notre imagination
 
 ### III) Choix techniques
@@ -72,10 +72,10 @@ Le projet comporte un fichier Makefile qui permet de réaliser certaines actions
 
 Sans IDE, il reste possible d'utiliser le makefile en utilisant les commandes suivantes : 
 
-- **make composer_install** -- ( Cette commande permet d'installer les dépendances de composer )
-- **make composer_update** -- ( Cette commande permet de mettre à jour les dépendances)
-- **make sass_dev** -- ( Cette commande permet de compiler de manière automatique les assets du projet )
-- **make sass_production** -- ( Cette commande permet de compiler les assets du projet pour la production et de les minifier pour améliorer les performances )
+- **make composer_install** -- (Cette commande permet d'installer les dépendances de composer)
+- **make composer_update** -- (Cette commande permet de mettre à jour les dépendances)
+- **make sass_dev** -- (Cette commande permet de compiler de manière automatique les assets du projet)
+- **make sass_production** -- (Cette commande permet de compiler les assets du projet pour la production et de les minifier pour améliorer les performances)
 
 #### e) Outils de déploiement
 
